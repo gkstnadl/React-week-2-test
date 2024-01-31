@@ -1,12 +1,11 @@
 import React from 'react';
-import Main from './pages/Main/Main';
+import Router from './shared/Router';
+
 
 function App() {
   return (
-    <div>
-      <Main />
-    </div>
-  )
+    <Router />
+  );
 }
 
 export default App;

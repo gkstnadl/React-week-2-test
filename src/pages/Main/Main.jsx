@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MemberButton from '../../components/MemberButton';
 import InputFanLetter from '../../components/InputFanLetter';
 import useFanLetters from '../../components/useFanLetters';
@@ -10,13 +11,18 @@ function Main() {
   const [fanLetters, addFanLetter] = useFanLetters();
   const [selectedMember, setSelectedMember] = useState(null); /**현재 선택된 멤버 상태 관리*/
 
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate('/');
+  };
+
   const handleMemberClick = (member) => {
     setSelectedMember(member);
   };
 
   return (
     <div>
-      <h1>BTS 팬레터함</h1>
+      <button onClick={goToHome}>BTS 팬레터함</button>
       <div>
         {members.map((member) => (
           <MemberButton key={member} member={member} onClick={() => handleMemberClick(member)} />

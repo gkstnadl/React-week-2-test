@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Detail from './Detail';
+import Detail from '../pages/Detail/Detail';
 
 function FanLetterList({ selectedMember, fanLetters }) {
   const [selectedLetter, setSelectedLetter] = useState(null);
@@ -19,8 +19,9 @@ function FanLetterList({ selectedMember, fanLetters }) {
     <div>
       <h2>{selectedMember}님께 온 팬레터</h2>
       {fanLetters[selectedMember]?.map((letter) => (
-        <div key={letter.id} onClick={() => handleCloseDetail(letter)}>
+        <div key={letter.id} onClick={() => handleLetterClick(letter)}>
           <p>닉네임 : {letter.nickname}</p>
+          <p>{new Date(letter.sentTime).toLocaleString()}</p>
           <p>내용 : {letter.content}</p>
         </div>
       ))}

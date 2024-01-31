@@ -15,7 +15,12 @@ function useFanLetters(initialValue = {}) {
 
   /**팬레터 추가(전송)하는 기능*/
   const addFanLetter = (nickname, content, member) => {
-    const newLetter = { id: uuidv4(), nickname, content };
+    const newLetter = {
+      id: uuidv4(),
+      nickname,
+      content,
+      sentTime: new Date().toISOString()
+    };
     setFanLetters((prevLetters) => ({
       ...prevLetters,
       [member]: [...(prevLetters[member] || []), newLetter]

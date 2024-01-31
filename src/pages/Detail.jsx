@@ -1,7 +1,7 @@
 import React from 'react';
 
-function detail() {
-  return <div>detail</div>;
+function Detail() {
+  return <div>메인으로</div>;
 }
 
-export default detail;
+export default Detail;

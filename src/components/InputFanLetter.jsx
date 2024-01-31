@@ -5,7 +5,7 @@ const members = ['정국', '뷔', '지민', '슈가', '진', 'RM', '제이홉'];
 function InputFanLetter({ addFanLetter }) {
   const [nickname, setNickname] = useState('');
   const [content, setContent] = useState('');
-  const [selectedMember, setselectedMember] = useState(members[0]);
+  const [selectedMember, setSelectedMember] = useState(members[0]);
 
   const handleFanLetterSubmit = (e) => {
     e.preventDefault();
@@ -18,25 +18,33 @@ function InputFanLetter({ addFanLetter }) {
     <form onSubmit={handleFanLetterSubmit}>
       <div>
         <label>닉네임 : </label>
-        <input placeholder="최대 20자까지"></input>
+        <input
+          placeholder="최대 20자까지"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          maxLength={20}
+        ></input>
       </div>
       <div>
         <label>내용 : </label>
-        <input placeholder="최대 100자까지"></input>
+        <input
+          placeholder="최대 100자까지"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          maxLength={100}
+        ></input>
       </div>
       <div>
         <label>보낼 멤버 : </label>
-        <select>
-          <option value="정국">정국</option>
-          <option value="뷔">뷔</option>
-          <option value="지민">지민</option>
-          <option value="슈가">슈가</option>
-          <option value="진">진</option>
-          <option value="RM">RM</option>
-          <option value="제이홉">제이홉</option>
+        <select value={selectedMember} onChange={(e) => setSelectedMember(e.target.value)}>
+          {members.map((member) => (
+            <option key={member} value={member}>
+              {member}
+            </option>
+          ))}
         </select>
       </div>
-      <button>팬레터 보내기</button>
+      <button type="submit">팬레터 보내기</button>
     </form>
   );
 }

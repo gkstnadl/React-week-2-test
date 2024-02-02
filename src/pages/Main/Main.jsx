@@ -3,6 +3,7 @@ import MemberButton from '../../components/MemberButton';
 import InputFanLetter from '../../components/InputFanLetter';
 import useFanLetters from '../../components/useFanLetters';
 import FanLetterList from '../../components/FanLetterList';
+import '../../styles/reset.css';
 import { MainStyle } from './MainStyledComponent';
 
 const members = ['정국', '뷔', '지민', '슈가', '진', 'RM', '제이홉'];
@@ -17,11 +18,9 @@ function Main() {
 
   return (
     <MainStyle>
-      <div>
-        {members.map((member) => (
-          <MemberButton key={member} member={member} onClick={() => handleMemberClick(member)} />
-        ))}
-      </div>
+      {members.map((member) => (
+        <MemberButton key={member} member={member} onClick={() => handleMemberClick(member)} />
+      ))}
       <InputFanLetter addFanLetter={addFanLetter} />
       <FanLetterList selectedMember={selectedMember} fanLetters={fanLetters} />
     </MainStyle>

@@ -1,6 +1,7 @@
 import React from "react";
 // 1. react-router-dom을 사용하기 위해서 아래 API들을 import 합니다.
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "../pages/Layout";
 import Main from '../pages/Main/Main';
 import Detail from "../pages/Detail/Detail";
 import FanLetterList from "../components/FanLetterList";
@@ -11,11 +12,13 @@ import FanLetterList from "../components/FanLetterList";
 const Router = () => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/detail/:id" element={<Detail />} />
-                <Route path="/:memberName" element={<FanLetterList />} />
-            </Routes>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/detail/:id" element={<Detail />} />
+                    <Route path="/:memberName" element={<FanLetterList />} />
+                </Routes>
+            </Layout>
         </BrowserRouter>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HeaderStyle, LogoImgStyle, HomeStyle } from '../styles/HeaderStyledComponent';
+import { HeaderStyle, LogoImgStyle, LogoBtn } from '../styles/HeaderStyledComponent';
 import LogoImg from '../assets/bts-logo.png';
 
 function Header() {
@@ -12,8 +12,9 @@ function Header() {
   return (
     <header>
       <HeaderStyle>
-        <LogoImgStyle src={LogoImg} alt="bts-logo" />
-        <HomeStyle onClick={goToHome}>HOME</HomeStyle>
+        <LogoBtn onClick={goToHome}>
+          <LogoImgStyle src={LogoImg} alt="bts-logo" />
+        </LogoBtn>
       </HeaderStyle>
     </header>
   );

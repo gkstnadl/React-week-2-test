@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MemberButton from '../../components/MemberButton';
+import MemberSlider from '../../components/MemberSlider';
 import InputFanLetter from '../../components/InputFanLetter';
 import useFanLetters from '../../components/useFanLetters';
 import FanLetterList from '../../components/FanLetterList';
@@ -18,9 +18,7 @@ function Main() {
 
   return (
     <MainStyle>
-      {members.map((member) => (
-        <MemberButton key={member} member={member} onClick={() => handleMemberClick(member)} />
-      ))}
+      <MemberSlider members={members} onMemberClick={handleMemberClick} />
       <InputFanLetter addFanLetter={addFanLetter} />
       <FanLetterList selectedMember={selectedMember} fanLetters={fanLetters} />
     </MainStyle>

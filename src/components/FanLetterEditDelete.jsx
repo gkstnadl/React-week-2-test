@@ -19,7 +19,7 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
     setActionType('delete');
   };
 
-  /** 수정/삭제버튼을 클릭하면 모달을 표시해주는 함수. */
+  /** 수정/삭제버튼을 클릭하면 모달을 표시해주는 로직. */
   const handleConfirm = () => {
     setShowModal(false);
     if (actionType === 'edit') {

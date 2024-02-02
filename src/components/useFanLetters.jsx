@@ -21,10 +21,14 @@ function useFanLetters(initialValue = {}) {
       content,
       sentTime: new Date().toISOString()
     };
-    setFanLetters((prevLetters) => ({
-      ...prevLetters,
-      [member]: [...(prevLetters[member] || []), newLetter]
-    }));
+    setFanLetters((prevLetters) => {
+      const memberLetters = [...(prevLetters[member] || [])];
+      memberLetters.push(newLetter);
+      return {
+        ...prevLetters,
+        [member]: memberLetters
+      };
+    });
   };
 
   return [fanLetters, addFanLetter];

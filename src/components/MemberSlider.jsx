@@ -19,6 +19,12 @@ const memberImages = {
   RM: memberRm,
   제이홉: memberJhope
 };
+const StyledSlider = styled(Slider)`
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+  }
+`;
 
 function MemberSlider({ onMemberClick }) {
   const slideSettings = {
@@ -29,12 +35,6 @@ function MemberSlider({ onMemberClick }) {
     slidesToScroll: 1 // 한 번에 스크롤할 슬라이드 개수
   };
 
-  const StyledSlider = styled(Slider)`
-    .slick-slide {
-      display: flex;
-      justify-content: center;
-    }
-  `;
   return (
     <SliderContainer>
       <StyledSlider {...slideSettings}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalBackdrop, ModalContent } from '../pages/Detail/DetailStyledComponents';
+import { ModalBackdrop, ModalContent } from '../styles/ValidationModalStyledComponent';
 
 function ValidationModal({ message, onConfirm, onCancel }) {
   return (

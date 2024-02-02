@@ -57,7 +57,6 @@ function Detail() {
 
   return (
     <div>
-      <button onClick={goToHome}>메인으로</button>
       <FanLetterEditDelete letter={letter} updateFanLetter={updateFanLetter} deleteFanLetter={deleteFanLetter} />
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import useFanLetters from './useFanLetters';
 import {
   ListTitleStyle,
   ListBodyStyle,
@@ -11,8 +10,7 @@ import {
   LetterImgNameStyle
 } from '../styles/FanLetterListStyledComponent';
 
-function FanLetterList({ selectedMember }) {
-  const [fanLetters, addFanLetter] = useFanLetters(); // useFanLetters 훅 사용
+function FanLetterList({ selectedMember, fanLetters }) {
   const navigate = useNavigate();
   const { memberName } = useParams(); // URL에서 멤버 이름을 받음
   const memberToShow = selectedMember || memberName; // prop이 있으면 그걸 사용, 없으면 URL에서 가져옴
@@ -23,7 +21,7 @@ function FanLetterList({ selectedMember }) {
     navigate(`/detail/${id}`);
   };
 
-  /**팬레터 작성자 프사 색깔 랜덤*/
+  /**팬레터 작성자 프사 색깔*/
   function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';

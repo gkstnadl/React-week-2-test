@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
 
-export const SliderContainer = styled.div`
+export const SliderContainerStyle = styled.div`
   max-width: 600px;
   height: auto;
   margin: auto;
 `;
 
-export const MemberBtns = styled.div`
+export const MemberButtonsStyle = styled.div`
   /* max-width: 1200px;
     display: flex;
     justify-content: center; */
@@ -27,5 +28,12 @@ export const MemberBtnStyle = styled.button`
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
+  }
+`;
+
+export const SliderStyle = styled(Slider)`
+  .slick-slide {
+    display: flex;
+    justify-content: center;
   }
 `;

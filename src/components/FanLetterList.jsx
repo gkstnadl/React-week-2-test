@@ -15,7 +15,8 @@ function FanLetterList({ selectedMember }) {
   const { fanLetters } = useContext(FanLetterContext);
   const navigate = useNavigate();
   const { memberName } = useParams(); // URL에서 멤버 이름을 받음
-  const memberToShow = selectedMember || memberName; // prop이 있으면 그걸 사용, 없으면 URL에서 가져옴
+  // selectedMember이라는 prop이 있으면 그걸 사용, 없으면 URL의 memberName에서 가져옴
+  const memberToShow = selectedMember || memberName;
   const [filteredFanLetters, setFilteredFanLetters] = useState([]);
 
   /** 클릭하면 id를 기반으로 상세페이지가 열리는 로직 */
@@ -25,8 +26,8 @@ function FanLetterList({ selectedMember }) {
 
   useEffect(() => {
     // selectedMember 또는 memberName이 변경될 때 실행됩니다.
-    setFilteredFanLetters(fanLetters[selectedMember] || []);
-  }, [fanLetters, selectedMember]);
+    setFilteredFanLetters(fanLetters[memberToShow] || []);
+  }, [fanLetters, memberToShow]);
 
   return (
     <ListBodyStyle>

@@ -34,6 +34,7 @@ export const LetterDetailContentStyle = styled.p`
   padding: 15px;
   text-align: left;
   margin: 10px 0;
+  line-height: 140%;
 `;
 
 export const LetterContentTextStyle = styled.textarea`

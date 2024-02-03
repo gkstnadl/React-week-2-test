@@ -11,7 +11,7 @@ function Detail() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 로컬 스토리지에서 팬레터 데이터 로드
+    // 로컬 스토리지에서 해당하는 팬레터 데이터 로드
     for (const member in fanLetters) {
       const found = fanLetters[member].find((l) => l.id === id);
       if (found) {

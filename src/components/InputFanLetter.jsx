@@ -10,16 +10,16 @@ import {
   SubmitBtnStyle,
   ButtonContainer
 } from '../styles/InputFanLetterStyledComponent';
+import { FanLetterContext } from './FanLetterContext';
 import ValidationModal from './ValidationModal';
 
-const members = ['정국', '뷔', '지민', '슈가', '진', 'RM', '제이홉'];
-
-function InputFanLetter({ addFanLetter }) {
+function InputFanLetter() {
+  const { addFanLetter, members, showModal, setShowModal, modalMessage, setModalMessage } =
+    useContext(FanLetterContext);
   const [nickname, setNickname] = useState('');
   const [content, setContent] = useState('');
   const [selectedMember, setSelectedMember] = useState(members[0]);
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const inputRef = useRef(null);
 
   /** 팬레터 보내기 버튼을 눌렀을 때 동작될 로직들 */
   const handleFanLetterSubmit = (e) => {
@@ -48,8 +48,6 @@ function InputFanLetter({ addFanLetter }) {
   const handleModalClose = () => {
     setShowModal(false);
   };
-
-  const inputRef = useRef(null);
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 입력창에 자동으로 포커스

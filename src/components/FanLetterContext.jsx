@@ -6,6 +6,10 @@ export const FanLetterContext = createContext();
 
 /** 팬레터 데이터를 제공해주는 컴포넌트 */
 export const FanLetterProvider = ({ children }) => {
+  const members = ['정국', '뷔', '지민', '슈가', '진', 'RM', '제이홉'];
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
   const [fanLetters, setFanLetters] = useState(() => {
     const savedData = localStorage.getItem('fanLetters');
     return savedData ? JSON.parse(savedData) : {};
@@ -63,11 +67,20 @@ export const FanLetterProvider = ({ children }) => {
     setFanLetters(updatedFanLetters);
   };
 
-  return (
-    <FanLetterContext.Provider value={{ fanLetters, addFanLetter, updateFanLetter, deleteFanLetter }}>
-      {children}
-    </FanLetterContext.Provider>
-  );
+  // Context에서 제공될 값
+  const contextValue = {
+    fanLetters,
+    members, // 멤버 이름 정의한 함수
+    addFanLetter, // 팬레터 추가 함수
+    updateFanLetter, // 팬레터 수정 함수
+    deleteFanLetter, // 팬레터 삭제 함수
+    showModal, // 모달 표시 상태
+    setShowModal, // 모달 표시 상태 변경 함수
+    modalMessage, // 모달 메시지
+    setModalMessage // 모달 메시지 변경 함수
+  };
+
+  return <FanLetterContext.Provider value={contextValue}>{children}</FanLetterContext.Provider>;
 };
 
 /** 팬레터에 접근하기 위한 훅 설정 */

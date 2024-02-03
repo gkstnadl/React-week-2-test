@@ -1,6 +1,4 @@
 import React from 'react';
-import Slider from 'react-slick';
-import styled from 'styled-components';
 import memberJhope from '../assets/member-image/member-jhope.jpg';
 import memberJimin from '../assets/member-image/member-jimin.jpg';
 import memberJin from '../assets/member-image/member-jin.jpg';
@@ -8,7 +6,12 @@ import memberJk from '../assets/member-image/member-jk.jpg';
 import memberRm from '../assets/member-image/member-rm.jpg';
 import memberSuga from '../assets/member-image/member-suga.jpg';
 import memberV from '../assets/member-image/member-v.jpg';
-import { MemberBtns, MemberBtnStyle, SliderContainer } from '../styles/MemberSliderStyledComponent';
+import {
+  MemberButtonsStyle,
+  MemberBtnStyle,
+  SliderContainerStyle,
+  SliderStyle
+} from '../styles/MemberSliderStyledComponent';
 
 const memberImages = {
   정국: memberJk,
@@ -19,12 +22,6 @@ const memberImages = {
   RM: memberRm,
   제이홉: memberJhope
 };
-const StyledSlider = styled(Slider)`
-  .slick-slide {
-    display: flex;
-    justify-content: center;
-  }
-`;
 
 function MemberSlider({ onMemberClick }) {
   const slideSettings = {
@@ -35,19 +32,23 @@ function MemberSlider({ onMemberClick }) {
     slidesToScroll: 1 // 한 번에 스크롤할 슬라이드 개수
   };
 
+  // Object.entries(memberImages) : memberImages 객체를 배열로 변환
+  // ['정국', 'memberJk'] 이런식으로
+  // .map(([member]) => {...}) : Object.entries에서 얻은 각 배열의 첫 번째 요소(멤버의 이름)를 추출.
+  // 차례대로 반복해서 실행. 멤버 7명이니 7번 실행해서 반환됨. 반환되는 결과는 설정해둔 버튼들
   return (
-    <SliderContainer>
-      <StyledSlider {...slideSettings}>
+    <SliderContainerStyle>
+      <SliderStyle {...slideSettings}>
         {Object.entries(memberImages).map(([member]) => (
-          <MemberBtns key={member}>
+          <MemberButtonsStyle key={member}>
             <MemberBtnStyle onClick={() => onMemberClick(member)}>
               <img src={memberImages[member]} alt={member} />
               <span>{member}</span>
             </MemberBtnStyle>
-          </MemberBtns>
+          </MemberButtonsStyle>
         ))}
-      </StyledSlider>
-    </SliderContainer>
+      </SliderStyle>
+    </SliderContainerStyle>
   );
 }
 

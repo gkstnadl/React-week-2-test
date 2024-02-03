@@ -61,7 +61,7 @@ function FanLetterEditDelete({ letter, setLetter }) {
   const handleSave = () => {
     updateFanLetter(letter.id, editedContent);
     // 현재 보여지는 팬레터의 내용을 업데이트
-    setLetter({ ...letter, content: editedContent });
+    setLetter({ ...letter, content: editedContent }); // 수정된내용으로 업데이트
     setIsEditing(false);
   };
 

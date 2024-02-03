@@ -69,6 +69,9 @@ export const SubmitBtnStyle = styled.button`
   background-color: #ac87c5;
   font-family: 'Pretendard-Regular';
   color: white;
-  padding: 10px 15px;
+  padding: 15px 20px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;

@@ -4,7 +4,7 @@ import {
   ListTitleStyle,
   ListBodyStyle,
   ListContentStyle,
-  LetterContent,
+  LetterContentStyle,
   ListNameTimeStyle,
   ListTimeStyle,
   LetterImgNameStyle
@@ -21,16 +21,6 @@ function FanLetterList({ selectedMember, fanLetters }) {
     navigate(`/detail/${id}`);
   };
 
-  /**팬레터 작성자 프사 색깔*/
-  function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
   useEffect(() => {
     // selectedMember 또는 memberName이 변경될 때 실행됩니다.
     const memberToShow = selectedMember || memberName;
@@ -44,13 +34,7 @@ function FanLetterList({ selectedMember, fanLetters }) {
         <ListContentStyle key={letter.id} onClick={() => handleLetterClick(letter.id)}>
           <ListNameTimeStyle>
             <LetterImgNameStyle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                fill={getRandomColor()}
-                viewBox="0 0 16 16"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill={letter.color} viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                 <path
                   fillRule="evenodd"
@@ -61,7 +45,7 @@ function FanLetterList({ selectedMember, fanLetters }) {
             </LetterImgNameStyle>
             <ListTimeStyle>{new Date(letter.sentTime).toLocaleString()}</ListTimeStyle>
           </ListNameTimeStyle>
-          <LetterContent>{letter.content}</LetterContent>
+          <LetterContentStyle>{letter.content}</LetterContentStyle>
         </ListContentStyle>
       ))}
     </ListBodyStyle>

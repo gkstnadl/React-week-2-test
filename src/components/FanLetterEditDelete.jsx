@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import ValidationModal from './ValidationModal';
-import { FanLetterDetailStyle } from '../styles/FanLetterEditDeleteStyledComponent';
-import { getRandomColor } from './FanLetterList';
+import {
+  FanLetterDetailStyle,
+  LetterProfileStyle,
+  LetterTimeStyle,
+  LetterDetailContentStyle,
+  EditClickBtnStyle,
+  DeleteClickBtnStyle,
+  BtnsStyle,
+  LetterContentTextStyle
+} from '../styles/FanLetterEditDeleteStyledComponent';
 
 function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -36,6 +44,7 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
     setShowModal(false);
   };
 
+  /** 저장버튼을 누르면 수정된 부분이 업데이트되는 로직이 실행됨 */
   const handleSave = () => {
     updateFanLetter(letter.id, editedContent);
     setIsEditing(false);
@@ -43,34 +52,49 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
 
   if (isEditing) {
     return (
-      <div>
-        <textarea value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
-        <button onClick={handleSave}>저장</button>
-        <button onClick={() => setIsEditing(false)}>취소</button>
-      </div>
+      <FanLetterDetailStyle>
+        <LetterProfileStyle>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill={letter.color} viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+            <path
+              fillRule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+            />
+          </svg>
+          <div>
+            <p>{letter.nickname}</p>
+            <LetterTimeStyle>{new Date(letter.sentTime).toLocaleString()}</LetterTimeStyle>
+          </div>
+        </LetterProfileStyle>
+        <LetterContentTextStyle value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
+        <BtnsStyle>
+          <DeleteClickBtnStyle onClick={() => setIsEditing(false)}>취소</DeleteClickBtnStyle>
+          <EditClickBtnStyle onClick={handleSave}>저장</EditClickBtnStyle>
+        </BtnsStyle>
+      </FanLetterDetailStyle>
     );
   }
 
   return (
     <FanLetterDetailStyle>
-      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill={getRandomColor()} viewBox="0 0 16 16">
-        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-        <path
-          fillRule="evenodd"
-          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-        />
-      </svg>
-      <p>
-        <strong>닉네임:</strong> {letter.nickname}
-      </p>
-      <p>
-        <strong>내용:</strong> {letter.content}
-      </p>
-      <p>
-        <strong>보낸 시간:</strong> {new Date(letter.sentTime).toLocaleString()}
-      </p>
-      <button onClick={handleEditClick}>수정</button>
-      <button onClick={handleDeleteClick}>삭제</button>
+      <LetterProfileStyle>
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill={letter.color} viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+          <path
+            fillRule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+          />
+        </svg>
+        <div>
+          <p>{letter.nickname}</p>
+          <LetterTimeStyle>{new Date(letter.sentTime).toLocaleString()}</LetterTimeStyle>
+        </div>
+      </LetterProfileStyle>
+      <LetterDetailContentStyle>{letter.content}</LetterDetailContentStyle>
+      <BtnsStyle>
+        <DeleteClickBtnStyle onClick={handleDeleteClick}>삭제</DeleteClickBtnStyle>
+        <EditClickBtnStyle onClick={handleEditClick}>수정</EditClickBtnStyle>
+      </BtnsStyle>
       {showModal && (
         <ValidationModal
           message={actionType === 'edit' ? '수정하시겠습니까?' : '삭제하시겠습니까?'}

@@ -37,7 +37,7 @@ export const ListTimeStyle = styled.div`
   opacity: 50%;
 `;
 
-export const LetterContent = styled.p`
+export const LetterContentStyle = styled.p`
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 15px;

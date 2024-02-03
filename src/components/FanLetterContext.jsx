@@ -41,14 +41,34 @@ export const FanLetterProvider = ({ children }) => {
     }));
   };
 
-  return <FanLetterContext.Provider value={{ fanLetters, addFanLetter }}>{children}</FanLetterContext.Provider>;
+  /** 팬레터 수정하는 로직 */
+  const updateFanLetter = (id, newContent) => {
+    const updatedFanLetters = { ...fanLetters };
+    for (const member in updatedFanLetters) {
+      const index = updatedFanLetters[member].findIndex((letter) => letter.id === id);
+      if (index !== -1) {
+        updatedFanLetters[member][index].content = newContent;
+        break;
+      }
+    }
+    setFanLetters(updatedFanLetters);
+  };
+
+  /** 팬레터 삭제하는 로직 */
+  const deleteFanLetter = (id) => {
+    const updatedFanLetters = { ...fanLetters };
+    for (const member in updatedFanLetters) {
+      updatedFanLetters[member] = updatedFanLetters[member].filter((letter) => letter.id !== id);
+    }
+    setFanLetters(updatedFanLetters);
+  };
+
+  return (
+    <FanLetterContext.Provider value={{ fanLetters, addFanLetter, updateFanLetter, deleteFanLetter }}>
+      {children}
+    </FanLetterContext.Provider>
+  );
 };
 
 /** 팬레터에 접근하기 위한 훅 설정 */
-export const useFanLetters = () => {
-  const context = useContext(FanLetterContext);
-  if (!context) {
-    throw new Error('팬레터 데이터를 제공할 수 없습니다.');
-  }
-  return context;
-};
+export const useFanLetters = () => useContext(FanLetterContext);

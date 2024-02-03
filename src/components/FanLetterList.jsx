@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FanLetterContext } from './FanLetterContext';
 import {
   ListTitleStyle,
   ListBodyStyle,
@@ -10,7 +11,8 @@ import {
   LetterImgNameStyle
 } from '../styles/FanLetterListStyledComponent';
 
-function FanLetterList({ selectedMember, fanLetters }) {
+function FanLetterList({ selectedMember }) {
+  const { fanLetters } = useContext(FanLetterContext);
   const navigate = useNavigate();
   const { memberName } = useParams(); // URL에서 멤버 이름을 받음
   const memberToShow = selectedMember || memberName; // prop이 있으면 그걸 사용, 없으면 URL에서 가져옴
@@ -23,9 +25,8 @@ function FanLetterList({ selectedMember, fanLetters }) {
 
   useEffect(() => {
     // selectedMember 또는 memberName이 변경될 때 실행됩니다.
-    const memberToShow = selectedMember || memberName;
-    setFilteredFanLetters(fanLetters[memberToShow] || []);
-  }, [selectedMember, memberName, fanLetters]);
+    setFilteredFanLetters(fanLetters[selectedMember] || []);
+  }, [fanLetters, selectedMember]);
 
   return (
     <ListBodyStyle>

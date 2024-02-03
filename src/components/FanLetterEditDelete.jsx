@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FanLetterContext } from './FanLetterContext';
 import ValidationModal from './ValidationModal';
 import {
   FanLetterDetailStyle,
@@ -11,12 +13,14 @@ import {
   LetterContentTextStyle
 } from '../styles/FanLetterEditDeleteStyledComponent';
 
-function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
+function FanLetterEditDelete({ letter, setLetter }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(letter.content);
   const [showModal, setShowModal] = useState(false);
   const [actionType, setActionType] = useState(null);
   const inputRef = useRef(null);
+  const { updateFanLetter, deleteFanLetter } = useContext(FanLetterContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 입력창에 자동으로 포커스. 편집모드(isEdting)상태가 될때.
@@ -45,6 +49,7 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
       setIsEditing(true);
     } else if (actionType === 'delete') {
       deleteFanLetter(letter.id); // 삭제 로직 실행
+      navigate('/');
     }
   };
 
@@ -55,6 +60,8 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
   /** 저장버튼을 누르면 수정된 부분이 업데이트되는 로직이 실행됨 */
   const handleSave = () => {
     updateFanLetter(letter.id, editedContent);
+    // 현재 보여지는 팬레터의 내용을 업데이트
+    setLetter({ ...letter, content: editedContent });
     setIsEditing(false);
   };
 

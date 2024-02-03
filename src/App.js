@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+
   return (
     <FanLetterProvider>
       <GlobalStyle />

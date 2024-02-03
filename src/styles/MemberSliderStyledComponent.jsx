@@ -28,6 +28,10 @@ export const MemberBtnStyle = styled.button`
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    filter: brightness(50%);
+    &:hover {
+      filter: brightness(100%);
+    }
   }
 `;
 

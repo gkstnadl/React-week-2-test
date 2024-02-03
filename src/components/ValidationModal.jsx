@@ -17,8 +17,8 @@ function ValidationModal({ message, onConfirm, onCancel, showConfirmButton = tru
         </svg>
         <ModalMessageStyle>{message}</ModalMessageStyle>
         <div>
-          <CancelClickBtnStyle onClick={onCancel}>취소</CancelClickBtnStyle>
-          {showConfirmButton && <ConfirmClickBtnStyle onClick={onConfirm}>확인</ConfirmClickBtnStyle>}
+          {showConfirmButton && <CancelClickBtnStyle onClick={onCancel}>취소</CancelClickBtnStyle>}
+          <ConfirmClickBtnStyle onClick={onConfirm}>확인</ConfirmClickBtnStyle>
         </div>
       </ModalContentStyle>
     </ModalBackdropStyle>

@@ -59,6 +59,9 @@ export const EditClickBtnStyle = styled.button`
   margin-left: 20px;
   color: white;
   font-family: 'Pretendard-Regular';
+  &:hover {
+    background-color: #8860a5;
+  }
 `;
 
 export const DeleteClickBtnStyle = styled.button`
@@ -68,4 +71,9 @@ export const DeleteClickBtnStyle = styled.button`
   padding: 10px 30px;
   color: #ac87c5;
   font-family: 'Pretendard-Regular';
+  &:hover {
+    background-color: #d8d8d8;
+    color: white;
+    border: 1px solid #d8d8d8;
+  }
 `;

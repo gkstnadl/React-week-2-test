@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import {
   FormStyle,
   NameStyle,
@@ -38,12 +38,25 @@ function InputFanLetter({ addFanLetter }) {
     addFanLetter(nickname, content, selectedMember);
     setNickname('');
     setContent('');
+
+    // 보내기 성공했을 때 메시지 설정 및 모달 표시
+    setModalMessage('팬레터가 성공적으로 전송되었습니다.');
+    setShowModal(true);
   };
 
   /** 유효성 검사를 위한 모달창 닫는 로직 */
   const handleModalClose = () => {
     setShowModal(false);
   };
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 입력창에 자동으로 포커스
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   return (
     <>
@@ -55,6 +68,8 @@ function InputFanLetter({ addFanLetter }) {
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             maxLength={20}
+            ref={inputRef}
+            type="text"
           />
         </InputGroupStyle>
         <InputGroupStyle>
@@ -90,7 +105,7 @@ function InputFanLetter({ addFanLetter }) {
           message={modalMessage}
           onConfirm={handleModalClose}
           onCancel={handleModalClose}
-          showConfirmButton={false} // 확인 버튼 숨기기
+          showConfirmButton={false} // 취소 버튼 숨기기
         />
       )}
     </>

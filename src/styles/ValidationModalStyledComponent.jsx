@@ -30,7 +30,7 @@ export const ModalContentStyle = styled.div`
 export const ModalMessageStyle = styled.p`
   font-size: 20px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin: 5px 10px 10px 10px;
 `;
 // 모달 취소버튼 스타일
 export const CancelClickBtnStyle = styled.button`
@@ -38,6 +38,9 @@ export const CancelClickBtnStyle = styled.button`
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 10px 40px;
+  &:hover {
+    background-color: #d8d8d8;
+  }
 `;
 // 모달 확인버튼 스타일
 export const ConfirmClickBtnStyle = styled.button`
@@ -47,4 +50,7 @@ export const ConfirmClickBtnStyle = styled.button`
   padding: 10px 40px;
   margin-left: 10px;
   color: white;
+  &:hover {
+    background-color: #8860a5;
+  }
 `;

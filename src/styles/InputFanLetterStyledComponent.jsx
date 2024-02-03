@@ -74,4 +74,7 @@ export const SubmitBtnStyle = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+  &:hover {
+    background-color: #8860a5;
+  }
 `;

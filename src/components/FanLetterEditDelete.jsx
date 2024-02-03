@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ValidationModal from './ValidationModal';
 import {
   FanLetterDetailStyle,
@@ -16,6 +16,14 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
   const [editedContent, setEditedContent] = useState(letter.content);
   const [showModal, setShowModal] = useState(false);
   const [actionType, setActionType] = useState(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 입력창에 자동으로 포커스. 편집모드(isEdting)상태가 될때.
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEditing]);
 
   /** 삭제버튼 클릭하면 모달표시하고, 액션타입은 edit를 세팅 */
   const handleEditClick = () => {
@@ -66,7 +74,11 @@ function FanLetterEditDelete({ letter, updateFanLetter, deleteFanLetter }) {
             <LetterTimeStyle>{new Date(letter.sentTime).toLocaleString()}</LetterTimeStyle>
           </div>
         </LetterProfileStyle>
-        <LetterContentTextStyle value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
+        <LetterContentTextStyle
+          ref={inputRef}
+          value={editedContent}
+          onChange={(e) => setEditedContent(e.target.value)}
+        />
         <BtnsStyle>
           <DeleteClickBtnStyle onClick={() => setIsEditing(false)}>취소</DeleteClickBtnStyle>
           <EditClickBtnStyle onClick={handleSave}>저장</EditClickBtnStyle>

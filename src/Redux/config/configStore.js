@@ -1,7 +1,10 @@
-import { createStore } from 'redux';
-import { fanLetterReducer } from '../modules/Reducer';
+import { createStore } from "redux";
+import { combineReducers } from "redux";
+import { fanLetterReducer } from "../modules/Reducer";
 
-// 리덕스는 단일 스토어로 모든 상태 트리를 관리.
-const store = createStore(fanLetterReducer);
+const rootReducer = combineReducers({
+    fanLetterReducer: fanLetterReducer,
+});
+const store = createStore(rootReducer);
 
 export default store;

@@ -12,7 +12,7 @@ import {
   BtnsStyle,
   LetterContentTextStyle
 } from '../styles/FanLetterEditDeleteStyledComponent';
-import { updateFanLetter, deleteFanLetter } from '../redux/actions';
+import { updateFanLetter, deleteFanLetter } from '../Redux/modules/actions';
 
 function FanLetterEditDelete({ letterId }) {
   const dispatch = useDispatch();

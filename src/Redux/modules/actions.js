@@ -6,16 +6,8 @@ import {
   SET_MODAL_MESSAGE
 } from './actionTypes';
 import { v4 as uuidv4 } from 'uuid';
+import { getRandomColor } from './getRandomColor';
 
-/**팬레터 작성자 프사 컬러 랜덤 지정*/
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
 
 export const addFanLetter = (nickname, content, member) => {
   const newLetter = {

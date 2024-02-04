@@ -16,13 +16,16 @@ export const fanLetterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAN_LETTER:
       const { nickname, content, member, color } = action.payload;
+      const newFanLetters = {
+        ...state.fanLetters,
+        [member]: [...(state.fanLetters[member] || []), { nickname, content, color }]
+      };
+
       return {
         ...state,
-        fanLetters: {
-          ...state.fanLetters,
-          [member]: [...(state.fanLetters[member] || []), { nickname, content, color }]
-        }
+        fanLetters: newFanLetters
       };
+
     case UPDATE_FAN_LETTER:
       const { id, newContent } = action.payload;
       const updatedFanLetters = { ...state.fanLetters };
@@ -37,6 +40,7 @@ export const fanLetterReducer = (state = initialState, action) => {
         ...state,
         fanLetters: updatedFanLetters
       };
+
     case DELETE_FAN_LETTER:
       const updatedFanLettersForDelete = { ...state.fanLetters };
       for (const member in updatedFanLettersForDelete) {
@@ -48,11 +52,13 @@ export const fanLetterReducer = (state = initialState, action) => {
         ...state,
         fanLetters: updatedFanLettersForDelete
       };
+
     case SET_MODAL_VISIBILITY:
       return {
         ...state,
         showModal: action.payload
       };
+
     case SET_MODAL_MESSAGE:
       return {
         ...state,
@@ -62,3 +68,5 @@ export const fanLetterReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default fanLetterReducer;

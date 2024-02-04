@@ -1,24 +1,34 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FanLetterContext } from '../components/FanLetterContext';
+import { useDispatch, useSelector } from 'react-redux';
 import FanLetterEditDelete from '../components/FanLetterEditDelete';
+import { updateFanLetter, deleteFanLetter } from '../Redux/modules/actions';
 
 function Detail() {
   const { id } = useParams();
-  const [letter, setLetter] = useState(null);
-  const { fanLetters, updateFanLetter, deleteFanLetter } = useContext(FanLetterContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const fanLetters = useSelector((state) => state.fanLetters);
+  const [letter, setLetter] = useState(null);
 
   useEffect(() => {
-    // 로컬 스토리지에서 해당하는 팬레터 데이터 로드
-    for (const member in fanLetters) {
-      const found = fanLetters[member].find((l) => l.id === id);
-      if (found) {
-        setLetter(found);
-        break;
-      }
+    // 로컬 스토리지(Redux)에서 해당하는 팬레터 데이터 로드
+    const foundLetter = Object.values(fanLetters)
+      .flat()
+      .find((l) => l.id === id);
+    if (foundLetter) {
+      setLetter(foundLetter);
     }
   }, [id, fanLetters]);
+
+  const handleUpdateFanLetter = (id, newContent) => {
+    dispatch(updateFanLetter(id, newContent));
+  };
+
+  const handleDeleteFanLetter = (id) => {
+    dispatch(deleteFanLetter(id));
+    navigate('/');
+  };
 
   if (!letter) {
     return <div>팬레터가 아직 없어요!</div>;
@@ -28,8 +38,8 @@ function Detail() {
     <div>
       <FanLetterEditDelete
         letter={letter} //prop으로 전달할 함수들
-        updateFanLetter={updateFanLetter}
-        deleteFanLetter={deleteFanLetter}
+        updateFanLetter={handleUpdateFanLetter}
+        deleteFanLetter={handleDeleteFanLetter}
         setLetter={setLetter}
       />
     </div>

@@ -17,7 +17,11 @@ import { updateFanLetter, deleteFanLetter } from '../Redux/modules/actions';
 function FanLetterEditDelete({ letterId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const letter = useSelector((state) => state.fanLetters.find((l) => l.id === letterId));
+  const letter = useSelector((state) => {
+    // 모든 팬레터를 배열로 변환하고, 특정 ID를 가진 팬레터를 찾는 로직
+    const allLetters = Object.values(state.fanLetters).flat();
+    return allLetters.find((l) => l.id === letterId);
+  });
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(letter?.content);
@@ -59,8 +63,6 @@ function FanLetterEditDelete({ letterId }) {
     dispatch(updateFanLetter(letterId, editedContent));
     setIsEditing(false);
   };
-
-  if (!letter) return <div>팬레터가 없습니다.</div>;
 
   if (isEditing) {
     return (

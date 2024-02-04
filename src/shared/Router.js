@@ -2,8 +2,8 @@ import React from "react";
 // react-router-dom을 사용하기 위해서 아래 API들을 import 합니다.
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../pages/Layout";
-import Main from '../pages/Main/Main';
-import Detail from "../pages/Detail/Detail";
+import Main from '../pages/Main';
+import Detail from "../pages/Detail";
 import FanLetterList from "../components/FanLetterList";
 
 //BrowserRouter를 Router로 감싸는 이유는, 

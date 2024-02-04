@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import MemberSlider from '../../components/MemberSlider';
-import InputFanLetter from '../../components/InputFanLetter';
-import { FanLetterContext } from '../../components/FanLetterContext';
-import FanLetterList from '../../components/FanLetterList';
+import MemberSlider from '../components/MemberSlider';
+import InputFanLetter from '../components/InputFanLetter';
+import { FanLetterContext } from '../components/FanLetterContext';
+import FanLetterList from '../components/FanLetterList';
 import '../../styles/reset.css';
 import { MainStyle } from './MainStyledComponent';
 

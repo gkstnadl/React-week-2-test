@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../../styles/reset.css';
 import { FanLetterContext } from '../components/FanLetterContext';
 import FanLetterEditDelete from '../components/FanLetterEditDelete';
 

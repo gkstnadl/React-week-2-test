@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { FanLetterContext } from './FanLetterContext';
 import ValidationModal from './ValidationModal';
 import {
   FanLetterDetailStyle,
@@ -12,43 +12,41 @@ import {
   BtnsStyle,
   LetterContentTextStyle
 } from '../styles/FanLetterEditDeleteStyledComponent';
+import { updateFanLetter, deleteFanLetter } from '../redux/actions';
 
-function FanLetterEditDelete({ letter, setLetter }) {
+function FanLetterEditDelete({ letterId }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const letter = useSelector((state) => state.fanLetters.find((l) => l.id === letterId));
+
   const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(letter.content);
+  const [editedContent, setEditedContent] = useState(letter?.content);
   const [showModal, setShowModal] = useState(false);
   const [actionType, setActionType] = useState(null);
   const inputRef = useRef(null);
-  const { updateFanLetter, deleteFanLetter } = useContext(FanLetterContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    // 컴포넌트가 마운트될 때 입력창에 자동으로 포커스. 편집모드(isEdting)상태가 될때.
     if (isEditing && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isEditing]);
 
-  /** 삭제버튼 클릭하면 모달표시하고, 액션타입은 edit를 세팅 */
   const handleEditClick = () => {
     setShowModal(true);
     setActionType('edit');
   };
 
-  /** 삭제버튼 클릭하면 모달표시하고, 액션타입은 delete를 세팅 */
   const handleDeleteClick = () => {
     setShowModal(true);
     setActionType('delete');
   };
 
-  /** 수정/삭제버튼에 대한 모달.액션타입(수정/삭제)에 따라 세팅될 렌더링이 달라짐 */
   const handleConfirm = () => {
     setShowModal(false);
     if (actionType === 'edit') {
-      // 수정 로직. 편집 모드 세팅하기. 수정이 아니라 delete면 삭제로직 실행
       setIsEditing(true);
     } else if (actionType === 'delete') {
-      deleteFanLetter(letter.id); // 삭제 로직 실행
+      dispatch(deleteFanLetter(letterId));
       navigate('/');
     }
   };
@@ -57,13 +55,12 @@ function FanLetterEditDelete({ letter, setLetter }) {
     setShowModal(false);
   };
 
-  /** 저장버튼을 누르면 수정된 부분이 업데이트되는 로직이 실행됨 */
   const handleSave = () => {
-    updateFanLetter(letter.id, editedContent);
-    // 현재 보여지는 팬레터의 내용을 업데이트
-    setLetter({ ...letter, content: editedContent }); // 수정된내용으로 업데이트
+    dispatch(updateFanLetter(letterId, editedContent));
     setIsEditing(false);
   };
+
+  if (!letter) return <div>팬레터가 없습니다.</div>;
 
   if (isEditing) {
     return (

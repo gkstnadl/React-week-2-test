@@ -14,8 +14,8 @@ import { FanLetterContext } from './FanLetterContext';
 import ValidationModal from './ValidationModal';
 
 function InputFanLetter() {
-  const { addFanLetter, members, showModal, setShowModal, modalMessage, setModalMessage } =
-    useContext(FanLetterContext);
+  // const { addFanLetter, members, showModal, setShowModal, modalMessage, setModalMessage } =
+  //   useContext(FanLetterContext);
   const [nickname, setNickname] = useState('');
   const [content, setContent] = useState('');
   const [selectedMember, setSelectedMember] = useState(members[0]);
@@ -35,7 +35,7 @@ function InputFanLetter() {
       setShowModal(true);
       return;
     }
-    addFanLetter(nickname, content, selectedMember);
+    // addFanLetter(nickname, content, selectedMember);
     setNickname('');
     setContent('');
 

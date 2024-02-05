@@ -21,15 +21,3 @@ export const LogoImgStyle = styled.img`
   width: auto;
   height: 100px;
 `;
-
-// 홈 버튼 스타일
-export const HomeStyle = styled.button`
-  font-size: 18px;
-  border: 1px solid #b9badd;
-  border-radius: 5px;
-  padding: 10px 20px;
-  color: white;
-  background-color: #b9badd;
-  font-family: 'Pretendard-Regular';
-  margin-left: 40%;
-`;

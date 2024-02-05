@@ -45,7 +45,6 @@ export const LetterContentTextStyle = styled.textarea`
   padding: 15px;
   margin: 10px 0;
   font-size: 20px;
-  font-family: 'Pretendard-Regular';
 `;
 
 export const BtnsStyle = styled.div`
@@ -59,7 +58,6 @@ export const EditClickBtnStyle = styled.button`
   padding: 10px 30px;
   margin-left: 20px;
   color: white;
-  font-family: 'Pretendard-Regular';
   &:hover {
     background-color: #8860a5;
   }
@@ -71,7 +69,6 @@ export const DeleteClickBtnStyle = styled.button`
   background-color: white;
   padding: 10px 30px;
   color: #ac87c5;
-  font-family: 'Pretendard-Regular';
   &:hover {
     background-color: #d8d8d8;
     color: white;

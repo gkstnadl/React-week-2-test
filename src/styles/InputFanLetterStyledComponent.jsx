@@ -22,7 +22,6 @@ export const LabelGroupStyle = styled.label`
 export const NameStyle = styled.input`
   width: 200%;
   padding: 10px;
-  font-family: 'Pretendard-Regular';
   border: none;
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -36,7 +35,6 @@ export const ContentStyle = styled.textarea`
   width: 200%;
   height: 60px;
   padding: 10px;
-  font-family: 'Pretendard-Regular';
   border: none;
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -67,7 +65,6 @@ export const SubmitBtnStyle = styled.button`
   border: none;
   border-radius: 5px;
   background-color: #ac87c5;
-  font-family: 'Pretendard-Regular';
   color: white;
   padding: 15px 20px;
   font-weight: 500;

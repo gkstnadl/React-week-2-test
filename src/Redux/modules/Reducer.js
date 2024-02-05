@@ -29,13 +29,15 @@ export const fanLetterReducer = (state = initialState, action) => {
     case UPDATE_FAN_LETTER:
       const { id, newContent } = action.payload;
       const updatedFanLetters = { ...state.fanLetters };
-      for (const member in updatedFanLetters) {
-        const index = updatedFanLetters[member].findIndex((letter) => letter.id === id);
-        if (index !== -1) {
-          updatedFanLetters[member][index].content = newContent;
-          break;
-        }
-      }
+      Object.keys(updatedFanLetters).forEach(member => {
+        updatedFanLetters[member] = updatedFanLetters[member].map(letter => {
+          if (letter.id === id) {
+            return { ...letter, content: newContent };
+          }
+          return letter;
+        });
+      });
+
       return {
         ...state,
         fanLetters: updatedFanLetters

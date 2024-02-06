@@ -20,6 +20,7 @@ function FanLetterEditDelete({ letterId }) {
   const letter = useSelector((state) => {
     // 모든 팬레터를 배열로 변환하고, 특정 ID를 가진 팬레터를 찾는 로직
     const allLetters = Object.values(state.fanLetters).flat();
+    console.log(Object.values(state.fanLetters).flat());
     return allLetters.find((l) => l.id === letterId);
   });
 

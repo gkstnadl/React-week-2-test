@@ -37,10 +37,11 @@ function Detail() {
   return (
     <div>
       <FanLetterEditDelete
-        letter={letter} //prop으로 전달할 함수들
+        // letter={letter} //prop으로 전달할 함수들
         updateFanLetter={handleUpdateFanLetter}
         deleteFanLetter={handleDeleteFanLetter}
         setLetter={setLetter}
+        letterId={id}
       />
     </div>
   );

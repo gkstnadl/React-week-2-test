@@ -16,10 +16,17 @@ const initialState = {
 export const fanLetterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAN_LETTER:
-      const { nickname, content, member, color } = action.payload;
+      const { member } = action.payload;
       const newFanLetters = {
         ...state.fanLetters,
-        [member]: [...(state.fanLetters[member] || []), { nickname, content, color }]
+        [member]: [
+          ...(state.fanLetters[member] || []),
+          {
+            nickname: action.payload.nickname,
+            content: action.payload.content,
+            color: action.payload.color,
+          }
+        ]
       };
 
       return {
@@ -67,6 +74,7 @@ export const fanLetterReducer = (state = initialState, action) => {
         ...state,
         modalMessage: action.payload
       };
+
     default:
       return state;
   }

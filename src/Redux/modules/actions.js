@@ -15,7 +15,7 @@ export const addFanLetter = (nickname, content, member) => {
     nickname,
     content,
     sentTime: new Date().toISOString(),
-    color: getRandomColor() // 여기서 getRandomColor() 함수 호출
+    color: getRandomColor(), // 여기서 getRandomColor() 함수 호출
   };
 
   return {

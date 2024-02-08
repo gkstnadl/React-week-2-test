@@ -14,6 +14,7 @@ import {
 import ValidationModal from './ValidationModal';
 import { addFanLetter, setModalVisibility, setModalMessage } from '../Redux/modules/actions'; // Redux 액션 가져오기
 import { members } from '../Redux/modules/members'; // 멤버 목록 가져오기
+import { MailIcon } from 'assets/MailIcon';
 
 function InputFanLetter() {
   const dispatch = useDispatch();
@@ -31,17 +32,20 @@ function InputFanLetter() {
     if (!nickname.trim() || !content.trim()) {
       // 메시지 설정 및 모달 표시
       // Redux 액션을 디스패치하여 모달 상태 변경
-      dispatch(setModalMessage('닉네임과 내용을 모두 입력해주세요.'), setModalVisibility(true));
+      dispatch(setModalMessage('닉네임과 내용을 모두 입력해주세요.'));
+      dispatch(setModalVisibility(true));
       return;
     }
 
     // 팬레터 추가 Redux 액션 디스패치
+    console.log('addFanLetter with member:', selectedMember);
     dispatch(addFanLetter(nickname, content, selectedMember));
     setNickname('');
     setContent('');
 
     // 성공 메시지 설정 및 모달 표시
-    dispatch(setModalMessage('팬레터가 성공적으로 전송되었습니다.'), setModalVisibility(true));
+    dispatch(setModalMessage('팬레터가 성공적으로 전송되었습니다.'));
+    dispatch(setModalVisibility(true));
   };
 
   /** 유효성 검사를 위한 모달창 닫는 로직 */
@@ -90,9 +94,7 @@ function InputFanLetter() {
         </SendMemberSelectStyle>
         <ButtonContainer>
           <SubmitBtnStyle type="submit">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
-            </svg>
+            <MailIcon />
             팬레터 보내기
           </SubmitBtnStyle>
         </ButtonContainer>

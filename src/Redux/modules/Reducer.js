@@ -6,6 +6,7 @@ import {
   SET_MODAL_MESSAGE
 } from './actionTypes';
 
+
 const initialState = {
   fanLetters: JSON.parse(localStorage.getItem('fanLetters')) || {},
   showModal: false,

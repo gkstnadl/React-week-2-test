@@ -14,10 +14,5 @@ const store = createStore(
     { fanLetters: setLocalState }, // 초기 상태 설정
 );
 
-// // Store의 상태가 변경될 때마다 로컬 스토리지에 저장
-// store.subscribe(() => {
-//     const state = store.getState();
-//     localStorage.setItem('fanLetters', JSON.stringify(state.fanLetters));
-// });
 
 export default store;

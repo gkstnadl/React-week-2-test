@@ -31,8 +31,7 @@ function InputFanLetter() {
     if (!nickname.trim() || !content.trim()) {
       // 메시지 설정 및 모달 표시
       // Redux 액션을 디스패치하여 모달 상태 변경
-      dispatch(setModalMessage('닉네임과 내용을 모두 입력해주세요.'));
-      dispatch(setModalVisibility(true));
+      dispatch(setModalMessage('닉네임과 내용을 모두 입력해주세요.'), setModalVisibility(true));
       return;
     }
 
@@ -42,8 +41,7 @@ function InputFanLetter() {
     setContent('');
 
     // 성공 메시지 설정 및 모달 표시
-    dispatch(setModalMessage('팬레터가 성공적으로 전송되었습니다.'));
-    dispatch(setModalVisibility(true));
+    dispatch(setModalMessage('팬레터가 성공적으로 전송되었습니다.'), setModalVisibility(true));
   };
 
   /** 유효성 검사를 위한 모달창 닫는 로직 */

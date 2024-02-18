@@ -38,7 +38,6 @@ function InputFanLetter() {
     }
 
     // 팬레터 추가 Redux 액션 디스패치
-    console.log('addFanLetter with member:', selectedMember);
     dispatch(addFanLetter(nickname, content, selectedMember));
     setNickname('');
     setContent('');

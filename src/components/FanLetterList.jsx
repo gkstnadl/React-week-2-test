@@ -22,7 +22,9 @@ function FanLetterList({ selectedMember }) {
 
   useEffect(() => {
     // selectedMember 또는 memberName이 변경될 때 실행
-    const lettersToShow = selectedMember ? fanLetters[selectedMember] || [] : Object.values(fanLetters || {}).flat();
+    const lettersToShow = selectedMember
+      ? fanLetters[selectedMember] || []
+      : Object.values(fanLetters.fanLetters || {}).flat();
     setFilteredFanLetters(lettersToShow);
   }, [fanLetters, selectedMember, memberName]);
 
@@ -34,8 +36,8 @@ function FanLetterList({ selectedMember }) {
   return (
     <ListBodyStyle>
       <ListTitleStyle>{memberToShow}님께 온 팬레터</ListTitleStyle>
-      {filteredFanLetters.map((letter) => (
-        <ListContentStyle key={letter.id} onClick={() => handleLetterClick(letter.id)}>
+      {filteredFanLetters.map((letter, idx) => (
+        <ListContentStyle key={idx} onClick={() => handleLetterClick(letter.id)}>
           <ListNameTimeStyle>
             <LetterImgNameStyle>
               <ProfileIcon />

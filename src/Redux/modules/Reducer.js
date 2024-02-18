@@ -6,7 +6,6 @@ import {
   SET_MODAL_MESSAGE
 } from './actionTypes';
 
-
 const initialState = {
   fanLetters: JSON.parse(localStorage.getItem('fanLetters')) || {},
   showModal: false,
@@ -17,6 +16,7 @@ export const fanLetterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAN_LETTER:
       const { member } = action.payload;
+
       const newFanLetters = {
         ...state.fanLetters,
         [member]: [
@@ -24,7 +24,7 @@ export const fanLetterReducer = (state = initialState, action) => {
           {
             nickname: action.payload.nickname,
             content: action.payload.content,
-            color: action.payload.color,
+            color: action.payload.color
           }
         ]
       };
@@ -37,8 +37,8 @@ export const fanLetterReducer = (state = initialState, action) => {
     case UPDATE_FAN_LETTER:
       const { id, newContent } = action.payload;
       const updatedFanLetters = { ...state.fanLetters };
-      Object.keys(updatedFanLetters).forEach(member => {
-        updatedFanLetters[member] = updatedFanLetters[member].map(letter => {
+      Object.keys(updatedFanLetters).forEach((member) => {
+        updatedFanLetters[member] = updatedFanLetters[member].map((letter) => {
           if (letter.id === id) {
             return { ...letter, content: newContent };
           }
@@ -74,7 +74,6 @@ export const fanLetterReducer = (state = initialState, action) => {
         ...state,
         modalMessage: action.payload
       };
-
     default:
       return state;
   }
